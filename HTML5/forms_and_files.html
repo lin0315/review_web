@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- form属性示例 -->
+  <form id="testform">
+    <input type="text">
+  </form>
+  <textarea form="testform"></textarea>
+
+  <!-- fomraction属性示例 -->
+  <form action="serve.js" id="testform">
+    <input type="submit" name="s1" value="v1" formaction="s1.js">提交到s1
+    <input type="submit" name="s2" value="v2" formaction="s2.js">提交到s2
+    <input type="submit" name="s3" value="v3" formaction="s3.js">提交到s3
+    <input type="submit">
+  </form>
+
+  <!-- formmethod属性示例 -->
+  <form action="serve.js" id="testform">
+    <input type="submit" name="s1" value="v1" formaction="s1.js" formmethod="GET">提交到s1
+    <input type="submit" name="s2" value="v2" formaction="s2.js" formmethod="POST">提交到s2
+    <input type="submit">
+  </form>
+
+  <!-- placeholder属性 -->
+  <input type="text" placeholder="input me">
+
+  <!-- autofocus属性 -->
+  <input type="text" autofocus>
+
+  <!-- list属性 -->
+  <input type="text" name="greeting" list="greetings">
+  <datalist id="greetings" style="disolay: none">
+    <option value="Good">Good</option>
+    <option value="Hello">Hello</option>
+    <option value="World">World</option>
+  </datalist>
+
+  <input type="text" name="greeting" autocomplete="on" list="greetings">
+
+  <input type="color">
+
+  <!-- output元素的追加 -->
+  <form id="testform">
+    请选择一个数值：
+    <input name="range1" type=range min=0 max=100 step=5>
+    <output onforminput="value=range1.value">50</output>
+  </form>
+
+  <!-- pattern属性 -->
+  <input pattern="[0-9]{A-Z}{3}" name=part placeholder="输入内容：一个数值与三个大写字母">
+  <br>
+
+  <!-- file对象 -->
+  <script>
+    function ShowFileName() {
+      let file;
+      for (let i = 0; i < document.getElementById('file').files.length; i++) {
+        file = document.getElementById('file').files[i];
+        console.log(file);
+        var reader = new FileReader();
+        reader.readAsDataURL(file)
+        // console.log(reader);
+        reader.onload = function (e) {
+          let result = document.getElementById('result');
+          result.innerHTML = '<img src="' + this.result + '" alt=""/>'
+        }
+        // alert(file.name)
+      }
+    }
+  </script>
+  <input type="file" id="file" multiple size="80">
+  <input type="button" onclick="ShowFileName()" value="提交文件">
+  <div id="result"></div>
+
+
+</body>
+
+</html>
