@@ -1,7 +1,10 @@
 <template>
   <div>
     <span>Hello</span>
-    <span>我是Home组件</span>
+    <div>我是Home组件</div>
+    <router-link to="/home/news">新闻news</router-link>
+    <router-link to="/home/messages">消息messages</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
