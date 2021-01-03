@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // js代码执行顺序：同步->微任务->宏任务
+    // 注意：Promise里面也是同步，then里面为微任务
+    // 定时器为宏任务
+    setTimeout(() => {
+      console.log('我是定时器');
+    }, 0);
+
+    new Promise(resolve => {
+      console.log('Promise0');
+      setTimeout(() => {
+        console.log('Promise1');
+        resolve()
+        console.log('Promise2');
+      }, 0);
+    }).then(() => {
+      console.log('then');
+    })
+
+    console.log('同步代码');
+
+  </script>
+</body>
+
+</html>
