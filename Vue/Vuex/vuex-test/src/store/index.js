@@ -12,7 +12,12 @@ export default new Vuex.Store({
       { name: '李四', age: 44 },
       { name: '王五', age: 55 },
       { naem: '赵六', age: 66 }
-    ]
+    ],
+    info: {
+      name: '烧饼',
+      age: 20,
+      height: 175
+    }
   },
   // mutations: 类似于Vue实例里面的methods
   mutations: {
@@ -33,6 +38,19 @@ export default new Vuex.Store({
     },
     addStudent(state, stu) {
       state.students.push(stu)
+    },
+    // 后来动态添加的数据没法响应式的问题
+    updataInfo(state) {
+      // state.info.name = 'shaobin'
+      // 下面这个不是响应式
+      // state.info['address'] = '漳浦'
+      // set delete 响应式 第二个参数:对象为key 数组为索引
+      Vue.set(state.info, 'address', '漳浦')
+      Vue.delete(state.info, 'age')
+    },
+    asyncUpdataInfo(state) {
+      Vue.set(state.info, 'address', '漳浦')
+      Vue.delete(state.info, 'age')
     }
 
   },
@@ -59,7 +77,17 @@ export default new Vuex.Store({
     }
   },
 
+  // 异步修改数据通过actions 提交到mutations
   actions: {
+    aupdataInfo(context, payload) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          context.commit('asyncUpdataInfo')
+          console.log(payload);
+          resolve('bbbbbb')
+        }, 2000);
+      })
+    }
   },
   modules: {
   }
