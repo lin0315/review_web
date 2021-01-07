@@ -10,6 +10,7 @@ function deepCopy(obj = {}) {
   } else {
     result = {}
   }
+  // 使用递归
   for (let key in obj) {
     if (obj.hasOwnproperty(key)) {
       result[key] = deepCopy(obj[key])
@@ -17,6 +18,7 @@ function deepCopy(obj = {}) {
   }
   return result;
 }
+
 
 let a = {
   name: '张三',
