@@ -89,6 +89,7 @@ export default new Vuex.Store({
       })
     }
   },
+  // 抽离分模块
   modules: {
   }
 })
