@@ -31,3 +31,22 @@ let a = {
 let b
 b = deepCopy(a)
 console.log(b);
+
+// test 02
+function deepCopy02(obj = {}) {
+  if (typeof obj !== 'object' || obj == null) {
+    return obj
+  }
+  let result
+  if (obj instanceof Array) {
+    result = []
+  } else {
+    result = {}
+  }
+  for (let key in obj) {
+    if (obj.hasOwnproperty(key)) {
+      result[key] = deepCopy02(obj[key])
+    }
+  }
+  return result;
+}
